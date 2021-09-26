@@ -1,5 +1,5 @@
-const c = document.getElementById('chart');
-const ctx = c.getContext('2d');
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
 
 const graphic = () => {
   ctx.beginPath();
