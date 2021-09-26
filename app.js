@@ -1,6 +1,8 @@
 const canvas = document.getElementById('chart');
 const ctx = canvas.getContext('2d');
 
+const stats = [30, 65, 72, 300, 250, 87, 100, 42];
+
 const graphic = () => {
   ctx.beginPath();
   ctx.lineWidth = '5';
