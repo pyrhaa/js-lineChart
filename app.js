@@ -1,23 +1,53 @@
-const canvas = document.getElementById('chart');
-const ctx = canvas.getContext('2d');
+const chart = document.getElementById('chart').getContext('2d');
 
-const stats = [30, 65, 72, 300, 250, 87, 100, 42];
+const cw = chart.canvas.width;
+let ch = chart.canvas.height;
 
-const graphic = () => {
-  ctx.beginPath();
-  ctx.lineWidth = '5';
-  ctx.strokeStyle = 'green'; // Green path
-  ctx.moveTo(30, 96);
-  ctx.lineTo(70, 66);
-  ctx.lineTo(103, 76);
-  ctx.lineTo(170, 15);
-  ctx.stroke(); // Draw it
+const w = [0, cw / 5, 2 * (cw / 5), 3 * (cw / 5), 4 * (cw / 5), 5 * (cw / 5)];
 
-  ctx.beginPath();
-  ctx.strokeStyle = 'purple'; // Purple path
-  ctx.moveTo(50, 0);
-  ctx.lineTo(150, 130);
-  ctx.stroke(); // Draw it
+const h = [
+  ch,
+  ch - ch / 5,
+  ch - 2 * (ch / 5),
+  ch - 3 * (ch / 5),
+  ch - 4 * (ch / 5),
+  ch - 5 * (ch / 5),
+];
+
+ch = document.getElementById('chart');
+
+chart.beginPath();
+
+//actual graph
+for (let i = 0; i < w.length; i++) {
+  chart.moveTo(0, ch);
+  chart.strokeStyle = '#B44107';
+  chart.lineWidth = 4;
+  chart.lineTo(w[i], h[Math.floor(Math.random() * 4 + 1)]);
+  chart.stroke();
+}
+
+// vertical lines
+const gridV = () => {
+  for (let i = 1; i < w.length - 1; i++) {
+    chart.strokeStyle = '#DFDBD9';
+    chart.lineWidth = 1;
+    chart.moveTo(w[i], 0);
+    chart.lineTo(w[i], 450);
+  }
+  chart.stroke();
 };
 
-graphic();
+//horizontal lines
+const gridH = () => {
+  for (let i = 1; i < h.length - 1; i++) {
+    chart.strokeStyle = '#DFDBD9';
+    chart.lineWidth = 1;
+    chart.moveTo(0, h[i]);
+    chart.lineTo(3000, h[i]);
+  }
+  chart.stroke();
+};
+
+gridV();
+gridH();
